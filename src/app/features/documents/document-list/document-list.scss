@@ -118,7 +118,6 @@
   overflow-y: auto;
 }
 
-
 .streaming::after {
   content: "▋";
   animation: blink 1s step-end infinite;
@@ -160,4 +159,21 @@
   justify-content: space-between;
   align-items: center;
   gap: 2px;
+}
+
+.streaming::after {
+  content: "▋"; // Adiciona o caractere do cursor ao final do conteúdo.
+  // Aplica a animação 'blink' definida abaixo.
+  animation: blink 1s step-end infinite;
+}
+
+// Define a animação 'blink' que alterna a cor (visibilidade) do cursor.
+@keyframes blink {
+  from,
+  to {
+    color: transparent; // O cursor fica invisível.
+  }
+  50% {
+    color: inherit; // O cursor herda a cor do texto, tornando-se visível.
+  }
 }

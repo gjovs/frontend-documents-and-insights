@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +29,8 @@ export class DocumentList implements OnInit {
 
   documents = this.documentService.documents;
   streamingDocId = this.documentService.streamingDocId;
-  streamedInsightText = this.documentService.streamedInsightText;
+  streamedInsightText = computed(() => this.documentService.streamedInsightText());
+
 
   companyId: string | null = null;
 
@@ -62,7 +63,7 @@ export class DocumentList implements OnInit {
       data: { companyId: this.companyId }
     });
     dialogRef.afterClosed().subscribe((newDocument: Document | null) => {
-      if (newDocument) {  
+      if (newDocument) {
         this.documentService.startInsightStream(newDocument.id);
       }
     });
