@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Editar/Criar Empresa</h2>
+<mat-dialog-content>
+  <form [formGroup]="companyForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome da Empresa</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Token da API ZapSign</mat-label>
+      <input matInput formControlName="api_token">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="companyForm.invalid" (click)="save()">Salvar</button>
+</mat-dialog-actions>

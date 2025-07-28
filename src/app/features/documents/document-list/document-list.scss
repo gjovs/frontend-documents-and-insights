@@ -1,0 +1,163 @@
+@import "../../../../styles.scss";
+
+// --- Container Principal da Página ---
+.list-page-container {
+  padding: 24px;
+}
+
+// --- Cabeçalho (Título e Botão de Ação) ---
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.documents-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.document-card {
+  width: calc(33.333% - 16px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .mat-mdc-card-content {
+  flex-grow: 1;
+  padding-top: 16px;
+}
+
+.signers-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+::ng-deep .mat-mdc-list-item .mdc-list-item__content {
+  display: flex !important;
+  width: 100%;
+  align-items: center;
+}
+
+.list-item-spacer {
+  flex-grow: 1;
+}
+
+.signer-actions {
+  flex-shrink: 0;
+}
+
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.mat-mdc-card-actions {
+  padding: 8px 16px !important;
+}
+.no-items-message {
+  color: rgba(0, 0, 0, 0.54);
+  font-style: italic;
+
+  &.large {
+    text-align: center;
+    padding: 48px;
+    font-size: 18px;
+  }
+}
+::ng-deep .mat-mdc-list-item {
+  height: auto !important;
+
+  .mdc-list-item__content {
+    align-items: flex-start;
+  }
+
+  .mdc-list-item__primary-text,
+  .mdc-list-item__secondary-text {
+    white-space: normal !important;
+
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+}
+.insight-section {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+  padding-top: 16px !important;
+}
+
+.insight-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.insight-content {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+
+.streaming::after {
+  content: "▋";
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+}
+.signer-text-content {
+  margin-left: 16px;
+  word-break: break-all;
+}
+::ng-deep .mat-mdc-card-header .mat-mdc-card-header-text {
+  width: 100%;
+}
+
+.mat-mdc-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.signer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.signer-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2px;
+}

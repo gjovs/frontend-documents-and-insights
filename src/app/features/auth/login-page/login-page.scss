@@ -1,0 +1,145 @@
+/* src/app/features/auth/login-page/login-page.component.scss */
+
+// Importa nossas variáveis de cor do arquivo global.
+@import '../../../../styles.scss';
+
+// Layout principal da página
+.login-page-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+// --- Painel do Formulário (esquerda) ---
+.login-panel {
+  flex-basis: 450px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  a {
+    color: $zapsign-primary;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+.divider {
+  text-align: center;
+  color: #ccc;
+  margin: 1.5rem 0;
+  font-size: 0.8rem;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: $zapsign-primary;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+// --- Painel da Marca (direita) ---
+.brand-panel {
+  flex-grow: 1;
+  background: linear-gradient(135deg, $zapsign-gradient-start 0%, $zapsign-gradient-end 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 2.5rem;
+}
+
+.brand-title {
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.brand-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 2.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+// ADICIONE ESTA REGRA
+mat-form-field {
+  width: 100%;
+}
+
+
+// --- Estilização Manual dos Componentes do Angular Material ---
+
+// `::ng-deep` força o estilo a ser aplicado dentro dos componentes filhos.
+// Usamos isso para sobrescrever os estilos padrão do Material.
+
+::ng-deep {
+  // Estilo para os campos de formulário (E-mail, Senha)
+  .mat-mdc-form-field .mdc-text-field--filled {
+    background-color: $zapsign-form-field-bg !important;
+  }
+  .mat-mdc-form-field .mdc-line-ripple {
+    display: none !important; // Remove a linha de foco inferior
+  }
+  .mat-mdc-form-field .mat-mdc-form-field-flex {
+    border-radius: 8px 8px 0 0;
+  }
+
+  // Ícones dentro dos campos de formulário
+  .mat-mdc-form-field mat-icon[matPrefix] {
+    color: #999;
+    margin-right: 8px;
+  }
+
+  // Botão "Entrar"
+  // Nós miramos na classe que o Angular adiciona para a cor primária.
+  button.mat-primary {
+    background-color: $zapsign-primary !important;
+    color: white !important;
+    width: 100%;
+    padding: 22px 0 !important;
+    font-size: 1rem !important;
+    border-radius: 8px !important;
+    margin-top: 1rem !important;
+
+    // Estilo para o botão desabilitado
+    &.mdc-button--disabled {
+      background-color: rgba(0, 0, 0, 0.12) !important;
+    }
+  }
+}

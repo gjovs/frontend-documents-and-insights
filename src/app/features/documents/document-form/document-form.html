@@ -1,0 +1,74 @@
+<h2 mat-dialog-title>
+  {{ isEditMode ? "Editar Documento" : "Novo Documento para Análise" }}
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="documentForm" id="document-form" (ngSubmit)="save()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do Documento</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <ng-container *ngIf="!isEditMode">
+      <mat-form-field appearance="outline">
+        <mat-label>URL do Arquivo PDF</mat-label>
+        <input
+          matInput
+          formControlName="file_url"
+          placeholder="https://exemplo.com/contrato.pdf"
+        />
+      </mat-form-field>
+
+      <div class="signer-section-header">
+        <h3>Signatários</h3>
+        <button mat-stroked-button type="button" (click)="addSigner()">
+          <mat-icon>add</mat-icon>
+          Adicionar
+        </button>
+      </div>
+
+      <p style="font-size: 10px; color: grey">
+        Signatários na lista: {{ signers.controls.length }}
+      </p>
+
+      <div formArrayName="signers_data">
+        <div
+          *ngFor="let signerGroup of signers.controls; let i = index"
+          [formGroupName]="i"
+          class="signer-row"
+        >
+          <mat-form-field appearance="outline" class="signer-field">
+            <mat-label>Nome do Signatário</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="signer-field">
+            <mat-label>E-mail do Signatário</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+          <button
+            mat-icon-button
+            color="warn"
+            type="button"
+            (click)="removeSigner(i)"
+            matTooltip="Remover Signatário"
+          >
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="null">Cancelar</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="documentForm.invalid"
+    form="document-form"
+    type="submit"
+  >
+    Salvar
+  </button>
+</mat-dialog-actions>

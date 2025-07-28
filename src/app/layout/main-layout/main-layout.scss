@@ -1,0 +1,43 @@
+@import "../../../styles.scss";
+
+mat-sidenav {
+  width: 240px;
+  background-color: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+
+.mat-mdc-list-item {
+  color: rgba(0, 0, 0, 0.7);
+  &.active-link {
+    color: $zapsign-primary;
+    background-color: rgba($zapsign-primary, 0.08);
+    .mat-icon {
+      color: $zapsign-primary;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.main-content {
+  padding: 24px;
+  background-color: $zapsign-background;
+  height: 100%;
+}
+
+mat-toolbar {
+
+  background-color: $zapsign-primary;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

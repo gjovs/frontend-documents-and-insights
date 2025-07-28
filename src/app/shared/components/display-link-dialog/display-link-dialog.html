@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Link de Assinatura</h2>
+<mat-dialog-content>
+  <p>
+    Compartilhe este link com o signatário para que ele possa assinar o
+    documento.
+  </p>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>URL de Assinatura</mat-label>
+    <input matInput [value]="data.link" readonly />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+  <button mat-flat-button color="primary" (click)="copyLink()">
+    <mat-icon>content_copy</mat-icon>
+    Copiar Link
+  </button>
+</mat-dialog-actions>

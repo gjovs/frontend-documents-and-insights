@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.signer-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 16px;
+}
+
+.signer-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.signer-field {
+  flex-grow: 1;
+}

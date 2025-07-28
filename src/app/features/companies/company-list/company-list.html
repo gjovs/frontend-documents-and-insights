@@ -1,0 +1,59 @@
+<div class="list-page-container">
+  <div class="header">
+    <h1>Empresas</h1>
+    <button mat-flat-button color="primary" (click)="openCreateDialog()">
+      <mat-icon>add</mat-icon>
+      Nova Empresa
+    </button>
+  </div>
+
+  <mat-table [dataSource]="companies()" class="mat-elevation-z2">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let company"> {{ company.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell *matHeaderCellDef> Criação </mat-header-cell>
+      <mat-cell *matCellDef="let company">
+        {{ company.created_at | date : "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let company" class="actions-cell">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="viewCompany(company)"
+          matTooltip="Ver Documentos"
+        >
+          <mat-icon>folder_open</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="openEditDialog(company); $event.stopPropagation()"
+          matTooltip="Editar Empresa"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteCompany(company); $event.stopPropagation()"
+          matTooltip="Excluir Empresa"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="viewCompany(row)"
+      class="clickable-row"
+    ></mat-row>
+  </mat-table>
+</div>

@@ -1,0 +1,40 @@
+@import '../../../../styles.scss';
+
+.list-page-container {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+// Estilização manual do botão primário
+button[mat-flat-button].mat-primary {
+  background-color: $zapsign-primary;
+  color: white;
+}
+
+mat-table {
+  width: 100%;
+}
+
+.actions-cell {
+  text-align: right;
+  width: 120px;
+}
+
+.clickable-row {
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}

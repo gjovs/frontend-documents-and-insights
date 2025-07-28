@@ -1,0 +1,53 @@
+<div class="login-page-container">
+  <div class="login-panel">
+    <div class="form-wrapper">
+      <h1 class="title">Entrar</h1>
+      <p class="subtitle">
+        Não possui conta? <a href="#">Criar conta grátis</a>
+      </p>
+
+      <div class="sso-buttons"></div>
+
+      <div class="divider">OU</div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput formControlName="username" type="email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Senha</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput formControlName="password" type="password" required />
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Entrar
+        </button>
+      </form>
+      <a class="forgot-password" href="#">Esqueci minha senha</a>
+    </div>
+  </div>
+
+  <div class="brand-panel">
+    <div class="brand-wrapper">
+      <img
+        src="assets/images/zapsign-logo-white.svg"
+        alt="ZapSign Logo"
+        class="logo"
+      />
+      <h2 class="brand-title">A assinatura eletrônica mais fácil de usar</h2>
+      <p class="brand-subtitle">
+        Mais de 2 milhões de usuários confiam na ZapSign
+      </p>
+      <div class="social-proof-logos"></div>
+    </div>
+  </div>
+</div>

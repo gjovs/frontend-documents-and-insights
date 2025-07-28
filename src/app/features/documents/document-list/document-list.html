@@ -1,0 +1,134 @@
+<div class="list-page-container">
+  <div class="header">
+    <h1>Documentos</h1>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="openCreateDocumentDialog()"
+    >
+      <mat-icon>add</mat-icon>
+      Novo Documento e Análise de IA
+    </button>
+  </div>
+
+  <div
+    *ngIf="(documents()?.length ?? 0) > 0; else noDocuments"
+    class="documents-grid"
+  >
+    <mat-card *ngFor="let doc of documents()" class="document-card">
+      <mat-card-header>
+        <mat-card-title>{{ doc.name }}</mat-card-title>
+        <mat-card-subtitle
+          >Status: {{ doc.status | titlecase }}</mat-card-subtitle
+        >
+        <div class="document-actions">
+          <button
+            mat-icon-button
+            matTooltip="Editar Documento"
+            (click)="openEditDocumentDialog(doc); $event.stopPropagation()"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            matTooltip="Excluir Documento"
+            (click)="deleteDocument(doc, $event)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <h3 class="signers-title">Signatários</h3>
+        <mat-list *ngIf="doc.signers.length > 0; else noSigners">
+          <mat-list-item *ngFor="let signer of doc.signers" class="signer-item">
+            <mat-icon matListItemIcon>person</mat-icon>
+
+            <div class="signer-details">
+              <div matListItemTitle>{{ signer.name }}</div>
+              <div matListItemLine >
+                {{ signer.email }} | Status: {{ signer.status }}
+              </div>
+            </div>
+
+            <div class="signer-actions">
+              <button
+                mat-icon-button
+                color="primary"
+                matTooltip="Gerar Link de Assinatura"
+                (click)="
+                  startSigningProcess(signer.id); $event.stopPropagation()
+                "
+              >
+                <mat-icon>link</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                color="warn"
+                matTooltip="Remover Signatário"
+                (click)="deleteSigner(signer, $event)"
+              >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+        <ng-template #noSigners>
+          <p class="no-items-message">Nenhum signatário adicionado.</p>
+        </ng-template>
+      </mat-card-content>
+
+      <mat-card-content> </mat-card-content>
+
+      <mat-card-content class="insight-section">
+        <h3 class="insight-title">
+          <mat-icon>psychology</mat-icon>
+          Análise de IA
+        </h3>
+
+        <div [ngSwitch]="getInsightDisplayState(doc)">
+          <div *ngSwitchCase="'streaming'">
+            <mat-progress-bar
+              mode="indeterminate"
+              color="primary"
+            ></mat-progress-bar>
+            <div class="insight-content streaming">
+              {{ streamedInsightText() }}
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'completed'">
+            <div class="insight-content">
+              {{ doc.insight?.content?.summary }}
+            </div>
+          </div>
+
+          <div *ngSwitchDefault>
+            <p class="no-items-message">
+              Análise pendente. Crie um novo documento para iniciar.
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button
+          mat-button
+          color="primary"
+          (click)="openAddSignerDialog(doc.id)"
+        >
+          Adicionar Signatário
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <ng-template #noDocuments>
+    <div class="no-items-message large">
+      <p>Nenhum documento encontrado para esta empresa.</p>
+    </div>
+  </ng-template>
+</div>

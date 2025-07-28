@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Nova Assinatura</h2>
+<mat-dialog-content>
+  <form [formGroup]="signerForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="signerForm.invalid" (click)="save()">Salvar</button>
+</mat-dialog-actions>
